@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 /*
 
   Notice the images on the page header.
