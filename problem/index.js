@@ -10,7 +10,7 @@
 
 */
 
-
+click_filter_element()
 
 // Create Filter Elements
 create_levels_filter();

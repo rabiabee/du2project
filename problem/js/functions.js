@@ -3,6 +3,10 @@
 // CODE According to specification
 function click_filter_element(event) {
 
+  const filter_element = event.target;
+  filter_element.classList.toggle("selected");
+  update_programmes();
+
   /*
     ARGUMENTS
       event: event-object created when user clicks on one of the filter elements.
