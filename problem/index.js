@@ -12,6 +12,12 @@
 
 click_filter_element()
 
+create_filter("#level_filter > ul", "selected", LEVELS);
+create_filter("#subject_filter > ul", "selected", SUBJECTS);
+create_filter("#language_filter > ul", "selected", LANGUAGES);
+
+
+
 // Create Filter Elements
 create_levels_filter();
 create_subjects_filter();

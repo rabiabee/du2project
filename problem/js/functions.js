@@ -152,6 +152,21 @@ function create_countries_cities_filters() {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
+
+function create_filter(parentSelector, className, items) {
+
+  items.forEach(item => {
+    const dom_element = create_filter_element({
+      parent: document.querySelector(parentSelector),
+      class: className,
+      textContent: item.name
+
+    });
+    dom_element.dataset.id = item.id;
+    dom_element.addEventListener("click", click_filter_element);
+  });
+}
+
 function create_levels_filter() {
   function create_level(level) {
     const dom = create_filter_element({
