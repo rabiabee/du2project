@@ -166,7 +166,7 @@ function create_filter(parentSelector, className, items) {
     dom_element.addEventListener("click", click_filter_element);
   });
 }
-
+//-----------------------------------------
 function create_levels_filter() {
   function create_level(level) {
     const dom = create_filter_element({

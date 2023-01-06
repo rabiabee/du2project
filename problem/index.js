@@ -10,11 +10,16 @@
 
 */
 
-click_filter_element()
+
+
+
+
 
 create_filter("#level_filter > ul", "selected", LEVELS);
 create_filter("#subject_filter > ul", "selected", SUBJECTS);
 create_filter("#language_filter > ul", "selected", LANGUAGES);
+
+document.querySelector("#filter_container").addEventListener("click", click_filter_element);
 
 
 
