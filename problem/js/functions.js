@@ -203,13 +203,22 @@ function create_language_filter() {
   array_each(LANGUAGES, create_element);
 }
 
-
 // G / VG (see details in specification)
 // CODE according to specifications
 function create_programme(programme) {
 
-  /*
+  // create list item elements for the programme
+  const li_programmes = document.createElement("li");
 
+  // get city object from CITIES array and set background img for list items 
+  const city = array_find(CITIES, (city) => city.id === programme.cityID);
+  const image = array_random_element(city.imagesNormal);
+  li_programmes.style.backgroundImage = `url(/problem/media/geo_images/${randomImage})`;
+
+  //append list items to #programmes > ul
+  document.querySelector("#programmes > ul").appendChild(li_programmes);
+
+  /*
     ARGUMENT
       programme (object): One of the objects from PROGRAMMES
 
