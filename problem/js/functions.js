@@ -30,6 +30,20 @@ function click_filter_element(event) {
 // CODE according to specification
 function create_filter_element(data) {
 
+  // create a new DOM element with the tag "li"
+  const new_element = document.createElement("li");
+  // set the class of the element to the class specified in the data object
+  new_element.className = data.class;
+  // set the text content of the element to the textcontent specified in the data object
+  new_element.textContent = data.textContent;
+  // append the element to the parent element specified in the data object ?
+  data.parent.appendChild(new_element);
+
+  // set the click_filter_element function as a listener for the click event on the element
+  new_element.addEventListener("click", click_filter_element);
+
+  return new_element;
+
   /*
     ARGUMENTS
       data: object that contains the following keys:
