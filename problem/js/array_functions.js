@@ -1,5 +1,4 @@
 
-
 function array_find(array, test_function) {
   // Returns the first element in array that satisfies
   // the test_function
@@ -33,9 +32,6 @@ function array_each(array, callback) {
     callback(array[i]);
   }
 }
-
-
-
 
 // The functions below ONLY USEFUL FOR VG
 

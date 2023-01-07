@@ -245,12 +245,34 @@ function create_programme(programme) {
 // CODE according to the specification
 function update_programmes() {
 
+  // get current filter selections
+  const selected_filters = read_filters();
+
+  // get the element that will hold the programme elements
+  const programmes_list = document.querySelector("#programmes > ul");
+
+  // clear the current list of programmes
+  programmes_list.innerHTML = "";
+
+  // create a list element for each programme 
+  selected_filters.forEach(programme => {
+    create_programme(programme);
+  })
+
+  // if no programmes match the selected filters, show the message
+  if (selected_filters.length === 0) {
+    document.querySelector("#programmes > p").style.display = "block";
+  } else {
+    document.querySelector("#programmes > p").style.display = "none";
+  }
+
+  // update/randomize header images
+
   /*
       NO ARGUMENTS
 
       SIDE EFFECTS
-        This function updates the programmes shown on the page according to
-        the current filter status (which filter elements are selected / unselected).
+        This function updates the programmes shown on the page according to the current filter status (which filter elements are selected / unselected).
         It uses the function read_filters to know which programmes need to be included.
 
         VG: The top images (header) need to be updated here
