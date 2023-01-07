@@ -83,9 +83,7 @@ function add_group_toggling(filter_container_dom) {
       programmes must be updated.
 
     NO RETURN VALUE
-
   */
-
 }
 
 
@@ -166,6 +164,7 @@ function create_filter(parentSelector, className, items) {
     dom_element.addEventListener("click", click_filter_element);
   });
 }
+
 //-----------------------------------------
 function create_levels_filter() {
   function create_level(level) {
@@ -207,13 +206,16 @@ function create_language_filter() {
 // CODE according to specifications
 function create_programme(programme) {
 
+
+  // get city object from CITIES array and set background img for list items 
+  const city = array_find(CITIES, city => city.id === programme.cityID);
+
   // create list item elements for the programme
   const li_programmes = document.createElement("li");
 
-  // get city object from CITIES array and set background img for list items 
-  const city = array_find(CITIES, (city) => city.id === programme.cityID);
-  const image = array_random_element(city.imagesNormal);
-  li_programmes.style.backgroundImage = `url(/problem/media/geo_images/${randomImage})`;
+
+  /*const image = array_random_element(city.imagesNormal);
+  li_programmes.style.backgroundImage = `url(/problem/media/geo_images/${image})`;*/
 
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
