@@ -34,7 +34,7 @@ function create_filter_element(data) {
   // create a new DOM element with the tag "li"
   const new_element = document.createElement("li");
   // set the class of the element to the class specified in the data object
-  new_element.className = data.class;
+  new_element.className = "";
   // set the text content of the element to the textcontent specified in the data object
   new_element.textContent = data.textContent;
   // append the element to the parent element specified in the data object ?

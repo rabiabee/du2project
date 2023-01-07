@@ -15,9 +15,10 @@ document.querySelector(".filter_container").addEventListener("click", click_filt
 
 
 
-document.querySelector(".filter_container").addEventListener("click", update_programmes);
+
 
 // Create Filter Elements
+
 create_levels_filter();
 create_subjects_filter();
 create_language_filter();
