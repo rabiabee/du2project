@@ -5,6 +5,7 @@ function click_filter_element(event) {
 
   const filter_element = event.target;
   filter_element.classList.toggle("selected");
+  event.stopPropagation();
   update_programmes();
 
   /*

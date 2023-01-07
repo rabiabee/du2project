@@ -6,13 +6,7 @@
   G: The images can be hard-coded in the CSS (as background-image)
   VG: Every time the user selects / unselects one or more filter elements, the app
       shows three random images from all the possible country images.
-
 */
-
-
-create_filter("#level_filter > ul", "selected", LEVELS);
-create_filter("#subject_filter > ul", "selected", SUBJECTS);
-create_filter("#language_filter > ul", "selected", LANGUAGES);
 
 // create programmes (+  create an HTML element for each programme and append it to the #programmes > ul element.)
 array_each(PROGRAMMES, create_programme);
