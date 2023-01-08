@@ -208,26 +208,47 @@ function create_language_filter() {
 // CODE according to specifications
 function create_programme(programme) {
 
-  // get city object from CITIES array and set background img for list items 
-  const city = array_find(CITIES, city => city.id === programme.cityID);
-
   // create list item elements for the programme
   const li_programmes = document.createElement("li");
 
-  // create necessary programme elements
+  //create div to hold the h3 and p elements and append to li 
+  const div_programme = document.createElement("div");
+  li_programmes.appendChild(div_programme);
+
+  // create h3 programme name
   const h3_programme_name = document.createElement("h3");
   h3_programme_name.textContent = programme.name;
 
-  const p_programme_description = document.createElement("p");
+  // p1 university name
+  const p1_university = document.createElement("p");
+  // find the university object associated with this programme
+  p1_university.textContent = array_find(UNIVERSITIES, university => university.id === programme.universityID).name;
 
-  // append the elements to the programmes list
-  li_programmes.appendChild(h3_programme_name);
-  li_programmes.appendChild(p_programme_description);
+  // p2 city name, country name
+  const p2_city_country = document.createElement("p");
+  // find the city object associated with this university
+  const university = array_find(UNIVERSITIES, university => university.id === programme.universityID);
+  const city = array_find(CITIES, city => city.id === university.cityID);
+
+  // find the country object associated with this city
+  const country = array_find(COUNTRIES, country => country.id === city.countryID);
+  // set the text content of the p2 element to the city and country names
+  p2_city_country.textContent = `${city.name}, ${country.name}`;
+
+  // p3 levels, subject, language
+  const p3_levels_subject_language = document.createElement("p");
+  // set text content
+  p3_levels_subject_language.textContent = `${array_find(LEVELS, level => level.id === programme.levelID).name}, ${array_find(SUBJECTS, subject => subject.id === programme.subjectID).name}, ${array_find(LANGUAGES, language => language.id === programme.languageID).name}`;
+
+
+  // append the text elements to the div 
+  div_programme.appendChild(h3_programme_name);
+  div_programme.appendChild(p1_university);
+  div_programme.appendChild(p2_city_country);
+  div_programme.appendChild(p3_levels_subject_language);
 
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
-
-
 
   /*
     ARGUMENT
