@@ -81,6 +81,9 @@ function add_group_toggling(filter_container_dom) {
 // CODE according to specifications
 function toggle_cities(event) {
 
+  // select all city filter elements 
+
+
   /*
 
     ARGUMENTS
@@ -275,12 +278,17 @@ function create_programme(programme) {
   p3_levels_subject_language.textContent = `${array_find(LEVELS, level => level.id === programme.levelID).name}, ${array_find(SUBJECTS, subject => subject.id === programme.subjectID).name}, ${array_find(LANGUAGES, language => language.id === programme.languageID).name}`;
 
   // p4 sun index 
+  const p4_sun_index = document.createElement("p");
+  p4_sun_index.textContent = `${city.name}, sun-index: ${city.sun}`;
 
-  // append the text elements to the div 
+
+
+  // append the text elements 
   div_programme.appendChild(h3_programme_name);
   div_programme.appendChild(p1_university);
   div_programme.appendChild(p2_city_country);
   div_programme.appendChild(p3_levels_subject_language);
+  li_programmes.appendChild(p4_sun_index);
 
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
