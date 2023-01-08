@@ -149,9 +149,26 @@ function create_countries_cities_filters() {
 
 // G
 // ABSTRACT AND WRITE SPECIFICATION
-//    As you can see, all three functions below do basically the same thing.
-//    Abstract them to one function, and write the specification of that function.
+/* =========== SPECIFICATION ==========
 
+  "create_filter" function - creates HTML elements for a list of filter items and adds them to the DOM
+
+    ARGUMENTS
+      parentSelector (string): 
+      className: 
+      items: 
+
+      No control of arguments.
+
+    SIDE-EFFECTS:
+    Creates HTML elements for each item in the "items" array and appends them to the element specified by "parentSelector".
+    Sets the "data-id" attribute of each element to the "id" value of the corresponding item in the "items" array.
+    Adds a "click" event listener to each element that will call the "click_filter_element" function when the element is clicked.
+
+    RETURN VALUE
+      No return value 
+
+============ ABSTRACTION =========== */
 function create_filter(parentSelector, className, items) {
 
   items.forEach(item => {
@@ -159,7 +176,6 @@ function create_filter(parentSelector, className, items) {
       parent: document.querySelector(parentSelector),
       class: className,
       textContent: item.name
-
     });
     dom_element.dataset.id = item.id;
     dom_element.addEventListener("click", click_filter_element);
@@ -230,6 +246,10 @@ function create_programme(programme) {
   const university = array_find(UNIVERSITIES, university => university.id === programme.universityID);
   const city = array_find(CITIES, city => city.id === university.cityID);
 
+  // background image
+  const programme_background_img = array_random_element(city.imagesNormal);
+  li_programmes.style.backgroundImage = `url("./media/${programme_background_img}")`;
+
   // find the country object associated with this city
   const country = array_find(COUNTRIES, country => country.id === city.countryID);
   // set the text content of the p2 element to the city and country names
@@ -240,7 +260,6 @@ function create_programme(programme) {
   // set text content
   p3_levels_subject_language.textContent = `${array_find(LEVELS, level => level.id === programme.levelID).name}, ${array_find(SUBJECTS, subject => subject.id === programme.subjectID).name}, ${array_find(LANGUAGES, language => language.id === programme.languageID).name}`;
 
-
   // append the text elements to the div 
   div_programme.appendChild(h3_programme_name);
   div_programme.appendChild(p1_university);
@@ -249,6 +268,8 @@ function create_programme(programme) {
 
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
+
+
 
   /*
     ARGUMENT
