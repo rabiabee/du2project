@@ -50,10 +50,16 @@ function create_filter_element(data) {
 }
 
 
-// VG
+/* VG
 // CODE according to specification
 function add_group_toggling(filter_container_dom) {
 
+  filter_container_dom.addEventListener("click", () => {
+    array_each(filter_container_dom.children, filter_element => {
+      filter_element.classList.toggle("selected");
+    });
+    update_programmes();
+  });
   /*
     ARGUMENT
       filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
@@ -66,8 +72,9 @@ function add_group_toggling(filter_container_dom) {
       programmes must be updated.
 
     NO RETURN VALUE
-  */
+
 }
+*/
 
 
 // VG
@@ -91,7 +98,29 @@ function toggle_cities(event) {
 }
 
 
-// WRITE SPECIFICATION
+/*
+WRITE SPECIFICATION
+  "create_filter" function - creates HTML elements for a list of filter items and adds them to the DOM
+
+    ARGUMENTS
+      parentSelector (string): the CSS selector for the element that filters elements should be appended to.
+      className (string): the class name to be applied to the filter elements.
+      items (array): an array of objects, where each object has the following structure:
+        {
+          id: (number),
+          name: (string)
+        } 
+      No control of arguments.
+
+    SIDE-EFFECTS:
+    Creates HTML elements for each item in the "items" array and appends them to the element specified by "parentSelector".
+    Sets the "data-id" attribute of each element to the "id" value of the corresponding item in the "items" array.
+    Adds a "click" event listener to each element that will call the "click_filter_element" function when the element is clicked.
+
+    RETURN VALUE:
+      No return value 
+*/
+
 // ATTENTION: You need to write the specification of all three functions:
 //            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters() {
@@ -209,6 +238,8 @@ function create_programme(programme) {
 
   // create list item elements for the programme
   const li_programmes = document.createElement("li");
+  //add class .programme to list element
+  li_programmes.classList.add("programme");
 
   //create div to hold the h3 and p elements and append to li 
   const div_programme = document.createElement("div");
@@ -243,6 +274,8 @@ function create_programme(programme) {
   // set text content
   p3_levels_subject_language.textContent = `${array_find(LEVELS, level => level.id === programme.levelID).name}, ${array_find(SUBJECTS, subject => subject.id === programme.subjectID).name}, ${array_find(LANGUAGES, language => language.id === programme.languageID).name}`;
 
+  // p4 sun index 
+
   // append the text elements to the div 
   div_programme.appendChild(h3_programme_name);
   div_programme.appendChild(p1_university);
@@ -266,7 +299,6 @@ function create_programme(programme) {
       G:  No background image required.
 
     NO RETURN VALUE
-
   */
 
 }
