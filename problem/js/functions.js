@@ -8,8 +8,6 @@ function click_filter_element(event) {
   event.stopPropagation();
   update_programmes();
 
-  /*console.log(`Filter element with text "${filter_element.textContent}" was clicked`);*/
-
   /*
     ARGUMENTS
       event: event-object created when user clicks on one of the filter elements.
@@ -205,10 +203,10 @@ function create_language_filter() {
   array_each(LANGUAGES, create_element);
 }
 
+
 // G / VG (see details in specification)
 // CODE according to specifications
 function create_programme(programme) {
-
 
   // get city object from CITIES array and set background img for list items 
   const city = array_find(CITIES, city => city.id === programme.cityID);
@@ -216,8 +214,20 @@ function create_programme(programme) {
   // create list item elements for the programme
   const li_programmes = document.createElement("li");
 
+  // create necessary programme elements
+  const h3_programme_name = document.createElement("h3");
+  h3_programme_name.textContent = programme.name;
+
+  const p_programme_description = document.createElement("p");
+
+  // append the elements to the programmes list
+  li_programmes.appendChild(h3_programme_name);
+  li_programmes.appendChild(p_programme_description);
+
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
+
+
 
   /*
     ARGUMENT

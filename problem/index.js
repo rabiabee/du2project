@@ -10,11 +10,9 @@
 
 // create programmes (+  create an HTML element for each programme and append it to the #programmes > ul element.)
 array_each(PROGRAMMES, create_programme);
+update_programmes();
 
 document.querySelector(".filter_container").addEventListener("click", click_filter_element);
-
-
-
 
 
 // Create Filter Elements
