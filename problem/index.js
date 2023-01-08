@@ -13,10 +13,6 @@ array_each(PROGRAMMES, create_programme);
 
 document.querySelector(".filter_container").addEventListener("click", click_filter_element);
 
-
-
-document.querySelector(".filter_container").addEventListener("click", update_programmes);
-
 // Create Filter Elements
 create_levels_filter();
 create_subjects_filter();

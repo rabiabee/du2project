@@ -8,6 +8,8 @@ function click_filter_element(event) {
   event.stopPropagation();
   update_programmes();
 
+  /*console.log(`Filter element with text "${filter_element.textContent}" was clicked`);*/
+
   /*
     ARGUMENTS
       event: event-object created when user clicks on one of the filter elements.
@@ -33,8 +35,8 @@ function create_filter_element(data) {
 
   // create a new DOM element with the tag "li"
   const new_element = document.createElement("li");
-  // set the class of the element to the class specified in the data object
-  new_element.className = data.class;
+  // set the class of the element
+  new_element.className = "";
   // set the text content of the element to the textcontent specified in the data object
   new_element.textContent = data.textContent;
   // append the element to the parent element specified in the data object ?
@@ -214,10 +216,6 @@ function create_programme(programme) {
   // create list item elements for the programme
   const li_programmes = document.createElement("li");
 
-
-  /*const image = array_random_element(city.imagesNormal);
-  li_programmes.style.backgroundImage = `url(/problem/media/geo_images/${image})`;*/
-
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
 
@@ -344,7 +342,6 @@ function read_filters() {
   programmes = array_filter(programmes, test_function_level);
 
 
-
   const language_selected_dom = document.querySelectorAll("#language_filter li.selected");
   const language_id_selected = [];
   function callback_add_languageID(dom_element) {
@@ -354,12 +351,10 @@ function read_filters() {
   array_each(language_selected_dom, callback_add_languageID);
 
 
-
   function test_function_language(programme) {
     return language_id_selected.includes(programme.languageID);
   }
   programmes = array_filter(programmes, test_function_language);
-
 
 
   const subject_selected_dom = document.querySelectorAll("#subject_filter li.selected");
@@ -378,7 +373,6 @@ function read_filters() {
   programmes = array_filter(programmes, test_function_subject);
 
 
-
   const search_string = document.querySelector("#search_field input").value;
   if (search_string !== "") {
     function test_function(programme) {
@@ -387,5 +381,12 @@ function read_filters() {
     programmes = array_filter(programmes, test_function);
   }
 
+  /*==========trouble shoot ==========
+  console.log(`Programmes after filtering for search string: ${programmes}`);
+  =====================================*/
+
+  /*========= trouble shooting =========
+  console.log(`Selected filters: ${level_id_selected} ${subject_id_selected} ${language_id_selected}`);
+  ======================================*/
   return programmes;
 }
