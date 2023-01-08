@@ -248,7 +248,9 @@ function create_programme(programme) {
 
   // background image
   const programme_background_img = array_random_element(city.imagesNormal);
-  li_programmes.style.backgroundImage = `url("./media/${programme_background_img}")`;
+  li_programmes.style.backgroundImage = `url("././media/geo_images/${programme_background_img}")`;
+  console.log(programme_background_img);
+
 
   // find the country object associated with this city
   const country = array_find(COUNTRIES, country => country.id === city.countryID);
