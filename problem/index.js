@@ -18,10 +18,9 @@ document.querySelector(".filter_container").addEventListener("click", click_filt
 
 
 // Create Filter Elements
-
-create_levels_filter();
-create_subjects_filter();
-create_language_filter();
+create_filter("#level_filter > ul", "selected", LEVELS);
+create_filter("#subject_filter > ul", "selected", SUBJECTS);
+create_filter("#language_filter > ul", "selected", LANGUAGES);
 create_countries_cities_filters();
 
 // Add Interaction of search field button

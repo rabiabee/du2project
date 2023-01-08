@@ -7,23 +7,6 @@ function click_filter_element(event) {
   filter_element.classList.toggle("selected");
   event.stopPropagation();
   update_programmes();
-
-  /*
-    ARGUMENTS
-      event: event-object created when user clicks on one of the filter elements.
-
-    SIDE-EFFECTS
-      Marks the clicked filter element as selected / unselected.
-      Since a filter element will have changed after the click, the list of
-      programmes must be updated.
-
-      Attention VG
-        Careful with the propagation of the click-event
-
-    NO RETURN VALUE
-
-  */
-
 }
 
 
@@ -148,16 +131,18 @@ function create_countries_cities_filters() {
 
 
 // G
-// ABSTRACT AND WRITE SPECIFICATION
-/* =========== SPECIFICATION ==========
+/* ABSTRACT AND WRITE SPECIFICATION
 
   "create_filter" function - creates HTML elements for a list of filter items and adds them to the DOM
 
     ARGUMENTS
-      parentSelector (string): 
-      className: 
-      items: 
-
+      parentSelector (string): the CSS selector for the element that filters elements should be appended to.
+      className (string): the class name to be applied to the filter elements.
+      items (array): an array of objects, where each object has the following structure:
+        {
+          id: (number),
+          name: (string)
+        } 
       No control of arguments.
 
     SIDE-EFFECTS:
@@ -165,7 +150,7 @@ function create_countries_cities_filters() {
     Sets the "data-id" attribute of each element to the "id" value of the corresponding item in the "items" array.
     Adds a "click" event listener to each element that will call the "click_filter_element" function when the element is clicked.
 
-    RETURN VALUE
+    RETURN VALUE:
       No return value 
 
 ============ ABSTRACTION =========== */
@@ -181,8 +166,7 @@ function create_filter(parentSelector, className, items) {
     dom_element.addEventListener("click", click_filter_element);
   });
 }
-
-//-----------------------------------------
+//---------------------------------------
 function create_levels_filter() {
   function create_level(level) {
     const dom = create_filter_element({
@@ -249,8 +233,6 @@ function create_programme(programme) {
   // background image
   const programme_background_img = array_random_element(city.imagesNormal);
   li_programmes.style.backgroundImage = `url("././media/geo_images/${programme_background_img}")`;
-  console.log(programme_background_img);
-
 
   // find the country object associated with this city
   const country = array_find(COUNTRIES, country => country.id === city.countryID);
@@ -270,7 +252,6 @@ function create_programme(programme) {
 
   //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
-
 
 
   /*
@@ -321,7 +302,9 @@ function update_programmes() {
     document.querySelector("#programmes > p").style.display = "none";
   }
 
-  // update/randomize header images
+
+
+
 
   /*
       NO ARGUMENTS
@@ -435,12 +418,5 @@ function read_filters() {
     programmes = array_filter(programmes, test_function);
   }
 
-  /*==========trouble shoot ==========
-  console.log(`Programmes after filtering for search string: ${programmes}`);
-  =====================================*/
-
-  /*========= trouble shooting =========
-  console.log(`Selected filters: ${level_id_selected} ${subject_id_selected} ${language_id_selected}`);
-  ======================================*/
   return programmes;
 }
