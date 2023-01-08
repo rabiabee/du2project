@@ -2,7 +2,6 @@
 // G
 // CODE According to specification
 function click_filter_element(event) {
-
   const filter_element = event.target;
   filter_element.classList.toggle("selected");
   event.stopPropagation();
@@ -17,7 +16,7 @@ function create_filter_element(data) {
   // create a new DOM element with the tag "li"
   const new_element = document.createElement("li");
   // set the class of the element to the class specified in the data object
-  new_element.className = "";
+  new_element.className = data.class;
   // set the text content of the element to the textcontent specified in the data object
   new_element.textContent = data.textContent;
   // append the element to the parent element specified in the data object ?
@@ -204,7 +203,7 @@ function create_language_filter() {
 }
 
 
-// G / VG (see details in specification)
+// G / VG 
 // CODE according to specifications
 function create_programme(programme) {
 
@@ -266,10 +265,6 @@ function create_programme(programme) {
           in which the programme is (via the university)
       G:  No background image required.
 
-
-      VG: The "see more" interaction must be included.
-      G:  The "see more" element is not required. And that information needs not be in place.
-
     NO RETURN VALUE
 
   */
@@ -302,9 +297,18 @@ function update_programmes() {
     document.querySelector("#programmes > p").style.display = "none";
   }
 
+  // update/randomize header images a filter is clicked
+  const top_images = document.querySelector("#top_images");
+  // represents a collection of the child elements of the top_images element
+  const div_images = top_images.children;
 
-
-
+  //select three random countries from COUNTRIES array and for each country select one random image from that country's "imagesNormal" array.
+  for (let i = 0; i < div_images.length; i++) {
+    const random_country = array_random_element(COUNTRIES);
+    const top_country_image = array_random_element(random_country.imagesNormal);
+    // set images as the background image for the top divs
+    div_images[i].style.backgroundImage = `url("././media/geo_images/${top_country_image}")`;
+  }
 
   /*
       NO ARGUMENTS
