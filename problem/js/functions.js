@@ -1,6 +1,4 @@
 
-// G
-// CODE According to specification
 function click_filter_element(event) {
   const filter_element = event.target;
   filter_element.classList.toggle("selected");
@@ -8,51 +6,23 @@ function click_filter_element(event) {
   update_programmes();
 }
 
-// G
-// CODE according to specification
+
 function create_filter_element(data) {
 
-  // create a new DOM element with the tag "li"
   const new_element = document.createElement("li");
-  // set the class of the element to the class specified in the data object
+
   new_element.className = data.class;
-  // set the text content of the element to the textcontent specified in the data object
   new_element.textContent = data.textContent;
-  // append the element to the parent element specified in the data object ?
   data.parent.appendChild(new_element);
 
-  // set the click_filter_element function as a listener for the click event on the element
   new_element.addEventListener("click", click_filter_element);
 
   return new_element;
-
-  /*
-    ARGUMENTS
-      data: object that contains the following keys:
-        class (string): a class-name given to the created element
-        textContent (string): the text that the element contains
-        parent (reference to HTML-element): the HTML-element that is the parent of the created element
-
-      No control of arguments.
-
-    SIDE-EFFECTS
-      Creates a new dom-element with the tag "li".
-      Gives the new dom-element the class contained in data.class
-      Appends the new dom-element to the element referenced in data.parent
-      Sets the text content of the new dom-element to data.textContent
-      Sets the function click_filter_element as a listener to "click" for the new dom-element
-
-    RETURN VALUE
-      Returns a reference to the new dom-element
-  */
-
 }
 
 
-/* VG
-// CODE according to specification
-function add_group_toggling(filter_container_dom) {
 
+/*function add_group_toggling(filter_container_dom) {
   filter_container_dom.addEventListener("click", () => {
     array_each(filter_container_dom.children, filter_element => {
       filter_element.classList.toggle("selected");
@@ -60,22 +30,8 @@ function add_group_toggling(filter_container_dom) {
     update_programmes();
   });
   /*
-    ARGUMENT
-      filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
-            Exempel: the <ul> that contains the filters for Language.
-
-    SIDE EFFECTS
-      The function makes sure that when the user clicks on filter_container_dom, all the
-      filter_elements that it contains are selected / unselected.
-      Since some filter elements will have changed after the click, the list of
-      programmes must be updated.
-
-    NO RETURN VALUE
-
 }
 */
-
-
 
 /*function toggle_cities(event) {
 
@@ -134,8 +90,6 @@ Function: create_city
       No return value 
 */
 
-// ATTENTION: You need to write the specification of all three functions:
-//            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters() {
   function create_country(country) {
     const dom = document.createElement("div");
@@ -245,134 +199,78 @@ function create_language_filter() {
 }
 
 
-// G / VG 
-// CODE according to specifications
 function create_programme(programme) {
 
-  // create list item elements for the programme
+
   const li_programmes = document.createElement("li");
-  //add class .programme to list element
   li_programmes.classList.add("programme");
 
-  //create div to hold the h3 and p elements and append to li 
   const div_programme = document.createElement("div");
   li_programmes.appendChild(div_programme);
 
-  // create h3 programme name
   const h3_programme_name = document.createElement("h3");
   h3_programme_name.textContent = programme.name;
 
-  // p1 university name
   const p1_university = document.createElement("p");
-  // find the university object associated with this programme
   p1_university.textContent = array_find(UNIVERSITIES, university => university.id === programme.universityID).name;
 
-  // p2 city name, country name
-  const p2_city_country = document.createElement("p");
-  // find the city object associated with this university
   const university = array_find(UNIVERSITIES, university => university.id === programme.universityID);
   const city = array_find(CITIES, city => city.id === university.cityID);
 
-  // background image
   const programme_background_img = array_random_element(city.imagesNormal);
   li_programmes.style.backgroundImage = `url("././media/geo_images/${programme_background_img}")`;
 
-  // find the country object associated with this city
+  const p2_city_country = document.createElement("p");
   const country = array_find(COUNTRIES, country => country.id === city.countryID);
-  // set the text content of the p2 element to the city and country names
   p2_city_country.textContent = `${city.name}, ${country.name}`;
 
-  // p3 levels, subject, language
+
   const p3_levels_subject_language = document.createElement("p");
-  // set text content
   p3_levels_subject_language.textContent = `${array_find(LEVELS, level => level.id === programme.levelID).name}, ${array_find(SUBJECTS, subject => subject.id === programme.subjectID).name}, ${array_find(LANGUAGES, language => language.id === programme.languageID).name}`;
 
-  // p4 sun index 
   const p4_sun_index = document.createElement("p");
   p4_sun_index.textContent = `${city.name}, sun-index: ${city.sun}`;
 
 
-
-  // append the text elements 
   div_programme.appendChild(h3_programme_name);
   div_programme.appendChild(p1_university);
   div_programme.appendChild(p2_city_country);
   div_programme.appendChild(p3_levels_subject_language);
   li_programmes.appendChild(p4_sun_index);
 
-  //append list items to #programmes > ul
   document.querySelector("#programmes > ul").appendChild(li_programmes);
-
-
-  /*
-    ARGUMENT
-      programme (object): One of the objects from PROGRAMMES
-
-    SIDE-EFFECTS
-      This function creates the HTML-element that contains all the information
-      about one programme, as seen in the video / image.
-      
-      VG: The background image is a random image from among the images of the city
-          in which the programme is (via the university)
-      G:  No background image required.
-
-    NO RETURN VALUE
-  */
-
 }
 
 
-// G
-// CODE according to the specification
 function update_programmes() {
 
-  // get current filter selections
   const selected_filters = read_filters();
 
-  // get the element that will hold the programme elements
   const programmes_list = document.querySelector("#programmes > ul");
 
-  // clear the current list of programmes
   programmes_list.innerHTML = "";
 
-  // create a list element for each programme 
   selected_filters.forEach(programme => {
     create_programme(programme);
   })
 
-  // if no programmes match the selected filters, show the message
+
   if (selected_filters.length === 0) {
     document.querySelector("#programmes > p").style.display = "block";
   } else {
     document.querySelector("#programmes > p").style.display = "none";
   }
 
-  // update/randomize header images a filter is clicked
+
   const top_images = document.querySelector("#top_images");
-  // represents a collection of the child elements of the top_images element
   const div_images = top_images.children;
 
-  //select three random countries from COUNTRIES array and for each country select one random image from that country's "imagesNormal" array.
   for (let i = 0; i < div_images.length; i++) {
     const random_country = array_random_element(COUNTRIES);
     const top_country_image = array_random_element(random_country.imagesNormal);
     // set images as the background image for the top divs
     div_images[i].style.backgroundImage = `url("././media/geo_images/${top_country_image}")`;
   }
-
-  /*
-      NO ARGUMENTS
-
-      SIDE EFFECTS
-        This function updates the programmes shown on the page according to the current filter status (which filter elements are selected / unselected).
-        It uses the function read_filters to know which programmes need to be included.
-
-        VG: The top images (header) need to be updated here
-
-      NO RETURN VALUE
-
-  */
-
 }
 
 
@@ -434,8 +332,6 @@ Function test_function(programme)
   RETURN VALUE: 
     a boolean that is true if the name of the programme includes the search string entered by the user and false otherwise
 */
-// You must understand how this function works. There will be questions about it
-// in the code review (kodredovisning)
 function read_filters() {
 
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
