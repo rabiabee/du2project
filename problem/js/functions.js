@@ -95,11 +95,10 @@ function add_group_toggling(filter_container_dom) {
 
 /*
 WRITE SPECIFICATION
-   create_countries_cities_filters function
+   Function: create_countries_cities_filters 
 
     ARGUMENTS: 
       None 
-
       No control of arguments.
 
     SIDE-EFFECTS:
@@ -108,6 +107,30 @@ WRITE SPECIFICATION
     It also adds event listeners to the city elements. 
 
     RETURN VALUE:
+      No return value 
+
+Function: create_country 
+
+  ARGUMENTS: 
+
+    country (object): An object representing a country from the COUNTRIES array.
+
+    SIDE-EFFECTS:
+    The function creates a DOM element for the country and appends it to the DOM.
+
+    RETURN VALUE:
+      No return value 
+
+Function: create_city 
+
+  ARGUMENTS: 
+      city (object): An object representing a city from the CITIES array.
+
+      SIDE-EFFECTS:
+      The function creates a DOM element for the city and appends it to the DOM. 
+      It also adds a data attribute to the element.
+
+      RETURN VALUE:
       No return value 
 */
 
@@ -148,12 +171,12 @@ function create_countries_cities_filters() {
 }
 
 
-// G
+
 /* ABSTRACT AND WRITE SPECIFICATION
 
-  "create_filter" function - creates HTML elements for a list of filter items and adds them to the DOM
+  Function: create_filter - creates HTML elements for a list of filter items and adds them to the DOM
 
-    ARGUMENTS
+    ARGUMENTS:
       parentSelector (string): the CSS selector for the element that filters elements should be appended to.
       className (string): the class name to be applied to the filter elements.
       items (array): an array of objects, where each object has the following structure:
@@ -353,13 +376,66 @@ function update_programmes() {
 }
 
 
-// G
-// WRITE SPECIFICATION
+
+/* 
+SPECIFICATION
+  Function: read_filters - 
+      ARGUMENTS: 
+        No arguments
+      SIDE EFFECTS: 
+        None
+      RETURN VALUE: 
+        Returns an array of programmes that match the selected filters.
+
+   Function: callback_add_cityID(dom_element)
+      ARGUMENT: 
+        dom_element: reference to a city filter element
+      SIDE EFFECT: 
+        id of the city represented by dom_element is added to city_id_selected array
+      
+      NO RETURN VALUE  
+
+  Function: test_function_level(programme)
+    ARGUMENT: 
+      programme: a programme object
+    RETURN VALUE: 
+      a boolean that is true if the level of the programme is selected by the user and false otherwise
+
+  Function: callback_add_languageID(dom_element)
+    ARGUMENT: 
+      dom_element: reference to a language filter element
+    SIDE EFFECT: 
+      id of the language represented by dom_element is added to language_id_selected array
+
+    NO RETURN VALUE
+
+  Function: test_function_language(programme)
+    ARGUMENT: 
+      programme: a programme object
+    RETURN VALUE: 
+      a boolean that is true if the language of the programme is selected by the user and false otherwise
+
+Function: callback_add_subjectID(dom_element)
+  ARGUMENT: 
+    dom_element: reference to a subject filter element
+  SIDE EFFECT: 
+    id of the subject represented by dom_element is added to subject_id_selected array
+NO RETURN VALUE
+
+Function test_function_subject(programme)
+  ARGUMENT: 
+    programme: a programme object
+  RETURN VALUE: 
+    a boolean that is true if the subject of the programme is selected by the user and false otherwise
+
+Function test_function(programme)
+  ARGUMENT: 
+    programme: a programme object
+  RETURN VALUE: 
+    a boolean that is true if the name of the programme includes the search string entered by the user and false otherwise
+*/
 // You must understand how this function works. There will be questions about it
 // in the code review (kodredovisning)
-
-// Optional VG: Which parts of the function's code could be abstracted?
-//              Implement it
 function read_filters() {
 
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
@@ -393,7 +469,6 @@ function read_filters() {
     }
   }
   array_each(universities, callback_add_programmes);
-
 
 
   const level_selected_dom = document.querySelectorAll("#level_filter li.selected");
