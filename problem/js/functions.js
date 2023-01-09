@@ -8,7 +8,6 @@ function click_filter_element(event) {
   update_programmes();
 }
 
-
 // G
 // CODE according to specification
 function create_filter_element(data) {
@@ -77,48 +76,36 @@ function add_group_toggling(filter_container_dom) {
 */
 
 
-// VG
-// CODE according to specifications
-function toggle_cities(event) {
 
-  // select all city filter elements 
+/*function toggle_cities(event) {
 
+  // select all city filter elements  
+  const filter_container = document.querySelectorAll(".filter_container");
+  const first_city = filter_container[0];
+  console.log(first_city);
+  const filter_elements = document.querySelectorAll(".filter_list > li");
 
-  /*
-
-    ARGUMENTS
-      This function does not take any arguments
-
-    SIDE EFFECTS
-      This function checks the state of the first city-filter-element (Madrid).
-      If it is selected then it de-selects ALL city-filter-elements
-      If it is de-selected then it selects ALL city-filter-elements 
-
-    NO RETURN VALUE
-
-  */
-
+  if (first_city.classList.contains("selected")) {
+    array_each(filter_elements, element => element.classList.remove("selected"));
+  } else {
+    array_each(filter_elements, element => element.classList.add("selected"));
+  }
 }
-
+*/
 
 /*
 WRITE SPECIFICATION
-  "create_filter" function - creates HTML elements for a list of filter items and adds them to the DOM
+   create_countries_cities_filters function
 
-    ARGUMENTS
-      parentSelector (string): the CSS selector for the element that filters elements should be appended to.
-      className (string): the class name to be applied to the filter elements.
-      items (array): an array of objects, where each object has the following structure:
-        {
-          id: (number),
-          name: (string)
-        } 
+    ARGUMENTS: 
+      None 
+
       No control of arguments.
 
     SIDE-EFFECTS:
-    Creates HTML elements for each item in the "items" array and appends them to the element specified by "parentSelector".
-    Sets the "data-id" attribute of each element to the "id" value of the corresponding item in the "items" array.
-    Adds a "click" event listener to each element that will call the "click_filter_element" function when the element is clicked.
+    creates HTML elements for a list of filter items and adds them to the DOM. 
+    It creates a DOM element for each country and city and appends them to the appropriate parent element.
+    It also adds event listeners to the city elements. 
 
     RETURN VALUE:
       No return value 
